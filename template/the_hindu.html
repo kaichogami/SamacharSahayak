@@ -1,0 +1,73 @@
+
+<html>
+    <head>
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+        <style>
+            tr.separated td, th {
+                /* set border style for separated rows */
+                border: solid 1px black;
+            }
+
+            table {
+                /* make the border continuous (without gaps between columns) */
+                border-collapse: collapse;
+            }
+        </style>
+        <style>
+            body * {
+                font-family: 'Roboto', sans-serif;
+            }
+
+            .header {
+                text-align: center;
+            }
+
+            .details-table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+
+            .details-table td {
+                border: 1px solid black;
+                padding: 5px;
+            }
+
+            .details-table td.sl-no {
+                width: 50px;
+            }
+
+            .details-table td.title {
+                width: 250px;
+            }
+
+            .borrower-details-table td {
+                border: 0px;
+            }
+
+            .details-table.eq-columns td {
+                width: 25%;
+            }
+
+            .details-table .head-cell {
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <h2>Today's News {{today_date}}</h2>
+        </div>
+        <br>
+
+        <div id="news">
+            {% for heading, scrapped_data in all_news_data.items() %}
+            <p style="color:blue;font-size:40px">{{heading}}</p>
+                {% for formatted_data in scrapped_data %}
+            <p style="font-size:25px"><b>{{formatted_data.title}}</b></p>
+            <br>
+            <p>{{formatted_data.html_data}}</p>
+            {% endfor %}
+                {% endfor %}
+        </div>
+    </body>
+</html>
